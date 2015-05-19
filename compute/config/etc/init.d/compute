@@ -1,0 +1,28 @@
+#!/bin/bash
+
+### BEGIN INIT INFO
+# Provides:          compute
+# Required-Start:    $ALL
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     3 5
+# Short-Description: compute
+# Description:       run a compute vm
+### END INIT INFO
+
+if [ -s /etc/HOSTNAME ] ; then
+
+    echo "2nd boot, doing nothing"
+
+else
+    set -x
+
+    sleep 1
+
+    hn="compute$(uuidgen | cut -b-8)"
+
+    echo $hn > /etc/HOSTNAME
+    hostname $hn
+
+    openstack-quickstart-extranodesetup
+fi
+

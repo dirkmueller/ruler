@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# already executed before?
+
+insserv compute
+
+grep -q bash.openstackrc /etc/bash.bashrc.local && exit 0
+
+/etc/init.d/compute start
+
