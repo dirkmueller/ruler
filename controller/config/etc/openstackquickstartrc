@@ -27,7 +27,7 @@ with_horizon=yes
 with_tempest=no
 
 # Setup Nova Compute ?
-node_is_compute=yes
+node_is_compute=no
 
 # network bridge devive name
 br=br0
