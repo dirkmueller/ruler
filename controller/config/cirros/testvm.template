@@ -1,0 +1,12 @@
+heat_template_version: 2013-05-23
+
+description: testvm
+
+resources:
+  my_instance:
+    type: OS::Nova::Server
+    properties:
+      key_name: testkey
+      image: debian-5
+      flavor: m1.micro
+

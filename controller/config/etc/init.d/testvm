@@ -1,0 +1,29 @@
+#!/bin/bash
+
+### BEGIN INIT INFO
+# Provides:          testvm
+# Required-Start:    $ALL
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     3 5
+# Short-Description: testvm
+# Description:       run a test vm
+### END INIT INFO
+
+
+# already executed before?
+
+. /etc/bash.bashrc.local
+
+sleep 2
+
+#nova boot --poll --flavor m1.micro --image debian-5 --key_name testkey testvm
+
+heat stack-create -f /cirros/testvm.template testit
+
+for i in $(seq 1 10); do
+    nova list
+    sleep 1
+done
+
+nova list
+

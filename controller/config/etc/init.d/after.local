@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# already executed before?
+
+grep -q bash.openstackrc /etc/bash.bashrc.local && exit 0
+
+/usr/sbin/openstack-quickstart-demosetup
+
+. /etc/bash.bashrc.local
+
+
+nova flavor-delete m1.micro || :
+nova flavor-create m1.micro --ephemeral 20 12 128 0 1
+
+cd /cirros
+tar xf cirros-0.3.1-x86_64-uec.tar.gz
+RAMDISK_ID=$(glance image-create --name="cirros-0.3.1-x86_64-uec-initrd" --is-public=True \
+            --disk-format=ari --container-format=ari < cirros-0.3.1-x86_64-initrd | grep ' id ' | awk '{print $4}')
+KERNEL_ID=$(glance image-create --name="cirros-0.3.1-x86_64-vmlinuz" --is-public=True \
+            --disk-format=aki --container-format=aki < cirros-0.3.1-x86_64-vmlinuz | grep ' id ' | awk '{print $4}')
+glance image-create --name="cirros-0.3.1-x86_64-uec" --is-public=True \
+            --container-format ami --disk-format ami \
+            --property kernel_id=$KERNEL_ID --property ramdisk_id=$RAMDISK_ID < cirros-0.3.1-x86_64-blank.img
+
+glance image-create --name="debian-5" --is-public=True \
+            --container-format ami --disk-format ami \
+            --property kernel_id=$KERNEL_ID --property ramdisk_id=$RAMDISK_ID < cirros-0.3.1-x86_64-blank.img
+
+ssh_user="cirros"
+
+for i in $(seq 1 60) ; do # wait for image to finish uploading
+        glance image-list|grep active && break
+        sleep 5
+done
+glance image-list
+
+imgid=$(glance image-list|grep debian-5|cut -f2 -d" ")
+mkdir -p ~/.ssh
+( umask 77 ; nova keypair-add testkey > ~/.ssh/id_rsa )
+
+insserv testvm
+
