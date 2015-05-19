@@ -22,7 +22,11 @@
 test -f /.kconfig && . /.kconfig
 test -f /.profile && . /.profile
 
+suseSetupProduct
+suseImportBuildKey
 
+baseStripLocales en_US
+baseStripTranslations en_US
 
 #======================================
 # Greeting...
@@ -43,10 +47,13 @@ STARTMODE='auto'
 USERCONTROL='no'
 EOF
 
-ln -sf SLES.prod /etc/products.d/baseproduct
-
 echo cleaning hostname
 echo -n > /etc/HOSTNAME
 
 chmod +x /etc/init.d/after.local
 chmod +x /etc/init.d/compute
+
+#======================================
+# Umount kernel filesystems
+#--------------------------------------
+baseCleanMount
