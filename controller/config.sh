@@ -36,11 +36,35 @@ baseUpdateSysConfig /etc/sysconfig/network/dhcp WRITE_HOSTNAME_TO_HOSTS no
 #--------------------------------------
 echo "Configure image: [$kiwi_iname]..."
 
+domain=ruler.site
+subnet=172.22.222
+controller=2
+pool_start=150
+pool_end=160
+
+cat > /etc/resolv.conf <<EOF
+search $domain
+nameserver 127.0.0.1
+nameserver 192.168.100.4
+EOF
+
+for i in `seq $pool_start $pool_end`; do
+    echo $subnet.$i dhcp-$i
+done >> /etc/hosts
+
+sed -i "s/@@SUBNET@@/$subnet/g;
+        s/@@DOMAIN@@/$domain/g;
+        s/@@POOL_START@@/$pool_start/g;
+        s/@@POOL_END@@/$pool_end/g;" \
+    /etc/dnsmasq.conf
+
+chkconfig dnsmasq on
+
 cat > /etc/sysconfig/network/ifcfg-eth0 <<EOF
 BOOTPROTO='static'
 BROADCAST=''
 ETHTOOL_OPTIONS=''
-IPADDR='172.22.222.2/24'
+IPADDR='$subnet.$controller/24'
 MTU=''
 NAME='Ethernet Card 0'
 NETMASK=''
