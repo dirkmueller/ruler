@@ -45,7 +45,7 @@ pool_end=160
 cat > /etc/resolv.conf <<EOF
 search $domain
 nameserver 127.0.0.1
-nameserver 192.168.100.4
+nameserver 8.8.8.8
 EOF
 
 for i in `seq $pool_start $pool_end`; do
