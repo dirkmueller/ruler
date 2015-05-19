@@ -28,6 +28,9 @@ suseImportBuildKey
 baseStripLocales en_US
 baseStripTranslations en_US
 
+baseUpdateSysConfig /etc/sysconfig/network/dhcp DHCLIENT_SET_HOSTNAME yes
+baseUpdateSysConfig /etc/sysconfig/network/dhcp WRITE_HOSTNAME_TO_HOSTS yes
+
 #======================================
 # Greeting...
 #--------------------------------------
