@@ -53,7 +53,7 @@ EOF
 echo cleaning hostname
 echo -n > /etc/HOSTNAME
 
-chmod +x /etc/init.d/after.local
+chmod +x /etc/init.d/boot.local
 chmod +x /etc/init.d/compute
 
 #======================================

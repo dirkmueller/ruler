@@ -99,6 +99,7 @@ suseRemoveService kbd
 
 chmod +x /usr/sbin/openstack-loopback-lvm
 chmod +x /etc/init.d/testvm
+chmod +x /etc/init.d/boot.local
 
 # not yet :-(
 # openstack-quickstart-demosetup
