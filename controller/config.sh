@@ -33,11 +33,13 @@ baseStripTranslations en_US
 #--------------------------------------
 echo "Configure image: [$kiwi_iname]..."
 
+subnet=172.22.222
+
 cat > /etc/sysconfig/network/ifcfg-eth0 <<EOF
 BOOTPROTO='static'
 BROADCAST=''
 ETHTOOL_OPTIONS=''
-IPADDR='172.22.222.2/24'
+IPADDR='$subnet.2/24'
 MTU=''
 NAME='Ethernet Card 0'
 NETMASK=''
