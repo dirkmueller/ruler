@@ -11,6 +11,10 @@ grep -q bash.openstackrc /etc/bash.bashrc.local && exit 0
 
 nova flavor-delete m1.micro || :
 nova flavor-create m1.micro --ephemeral 20 12 128 0 1
+nova flavor-create m1.micro.avx 21 128 0 1
+nova flavor-key 21 set "capabilities:cpu_info:features"="<in> avx"
+nova flavor-create m1.micro.avx2 22 128 0 1
+nova flavor-key 22 set "capabilities:cpu_info:features"="<in> avx2"
 
 cd /cirros
 tar xf cirros-0.3.1-x86_64-uec.tar.gz
@@ -38,5 +42,6 @@ imgid=$(glance image-list|grep debian-5|cut -f2 -d" ")
 mkdir -p ~/.ssh
 ( umask 77 ; nova keypair-add testkey > ~/.ssh/id_rsa )
 
-insserv testvm
+
+# insserv testvm
 
