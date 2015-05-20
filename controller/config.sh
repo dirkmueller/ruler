@@ -91,6 +91,20 @@ STARTMODE='auto'
 USERCONTROL='no'
 EOF
 
+cat > /etc/sysconfig/network/ifcfg-eth1.9 <<EOF
+BOOTPROTO='static'
+BROADCAST=''
+ETHTOOL_OPTIONS=''
+IPADDR='192.168.100.10/23'
+MTU=''
+NAME='Ethernet Card 1'
+NETMASK=''
+NETWORK=''
+REMOTE_IPADDR=''
+STARTMODE='auto'
+USERCONTROL='no'
+EOF
+
 
 sed -i -e 's,with_horizon.*,with_horizon=yes,' /etc/openstackquickstartrc
 sed -i -e 's,with_tempest.*,with_tempest=no,' /etc/openstackquickstartrc
