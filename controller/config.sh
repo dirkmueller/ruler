@@ -105,6 +105,9 @@ STARTMODE='auto'
 USERCONTROL='no'
 EOF
 
+cat > /etc/sysconfig/network/ifroute-eth1.9 <<EOF
+default 192.168.100.1
+EOF
 
 sed -i -e 's,with_horizon.*,with_horizon=yes,' /etc/openstackquickstartrc
 sed -i -e 's,with_tempest.*,with_tempest=no,' /etc/openstackquickstartrc
