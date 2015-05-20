@@ -25,7 +25,7 @@ test -f /.profile && . /.profile
 suseSetupProduct
 suseImportBuildKey
 
-baseStripLocales en_US
+baseStripLocales en fr de ca us
 baseStripTranslations en_US
 
 baseUpdateSysConfig /etc/sysconfig/network/dhcp DHCLIENT_SET_HOSTNAME no
