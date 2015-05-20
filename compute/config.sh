@@ -37,16 +37,15 @@ baseUpdateSysConfig /etc/sysconfig/network/dhcp WRITE_HOSTNAME_TO_HOSTS yes
 echo "Configure image: [$kiwi_iname]..."
 
 cat > /etc/sysconfig/network/ifcfg-eth0 <<EOF
-BOOTPROTO='static'
+BOOTPROTO='dhcp4'
 BROADCAST=''
 ETHTOOL_OPTIONS=''
-IPADDR='0.0.0.0/32'
 MTU=''
 NAME='Ethernet Card 0'
 NETMASK=''
 NETWORK=''
 REMOTE_IPADDR=''
-STARTMODE='auto'
+STARTMODE='onboot'
 USERCONTROL='no'
 EOF
 
