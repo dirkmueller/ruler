@@ -49,11 +49,30 @@ STARTMODE='onboot'
 USERCONTROL='no'
 EOF
 
-echo cleaning hostname
+cat > /etc/sysconfig/network/ifcfg-eth1 <<EOF
+BOOTPROTO='static'
+BROADCAST=''
+ETHTOOL_OPTIONS=''
+IPADDR='0.0.0.0/32'
+MTU=''
+NAME='Ethernet Card 1'
+NETMASK=''
+NETWORK=''
+REMOTE_IPADDR=''
+STARTMODE='auto'
+USERCONTROL='no'
+EOF
+
+echo "cleaning hostname"
 echo -n > /etc/HOSTNAME
 
 chmod +x /etc/init.d/boot.local
 chmod +x /etc/init.d/compute
+
+suseInsertService sshd
+suseRemoveService boot.lvm
+suseRemoveService boot.md
+suseRemoveService kbd
 
 #======================================
 # Umount kernel filesystems
