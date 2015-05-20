@@ -96,6 +96,7 @@ sed -i -e 's,with_horizon.*,with_horizon=yes,' /etc/openstackquickstartrc
 sed -i -e 's,with_tempest.*,with_tempest=no,' /etc/openstackquickstartrc
 
 suseInsertService sshd
+suseInsertService memcached
 suseRemoveService boot.lvm
 suseRemoveService boot.md
 suseRemoveService kbd
