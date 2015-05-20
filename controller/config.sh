@@ -103,6 +103,8 @@ NETWORK=''
 REMOTE_IPADDR=''
 STARTMODE='auto'
 USERCONTROL='no'
+VLAN_ID=9
+ETHERDEVICE='eth1'
 EOF
 
 cat > /etc/sysconfig/network/ifroute-eth1.9 <<EOF
