@@ -1,15 +1,9 @@
-- in the dashboard in the instances view, every 2nd time on viewing the list or so there is an error message „can not retrieve volume list“
-
-- the controller node does not get a default route to the outside
-
-- VMs are not reachable via floating ip from the controller node (or fixed for that matter)
-  * ralf suggested a fix, wip
-
 - offline migration doesn’t work (shared ssh key  missing on nova account)
 
 - no live migration (libvirt pieces missing, see commented out parts in openstack-quickstart/lib/functions.sh about enabling tcp listen)
 
-- webui is extremely extremely slow (dns lookup hangs?)
-  * fixed by starting memcached it seems
-
 - novnc console is not working (simply hangs.. the proxies are not configured correctly?)
+
+- cinder-volume is not being setup on 2ndary nodes?
+
+
