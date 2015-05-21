@@ -50,10 +50,10 @@ EOF
 
 for i in `seq $pool_start $pool_end`; do
     echo $subnet.$i dhcp-$i
-done >> /etc/hosts
+done >> /etc/hosts.dnsmasq
 
 echo suse.$domain > /etc/HOSTNAME
-echo "$subnet.controller   suse.$domain" >> /etc/hosts
+echo "$subnet.controller   suse.$domain" >> /etc/hosts.dnsmasq
 
 sed -i "s/@@SUBNET@@/$subnet/g;
         s/@@DOMAIN@@/$domain/g;
