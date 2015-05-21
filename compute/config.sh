@@ -47,6 +47,7 @@ NETWORK=''
 REMOTE_IPADDR=''
 STARTMODE='onboot'
 USERCONTROL='no'
+DHCLIENT_SET_HOSTNAME="yes"
 EOF
 
 cat > /etc/sysconfig/network/ifcfg-eth1 <<EOF
