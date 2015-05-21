@@ -2,6 +2,3 @@
 
 - no live migration (libvirt pieces missing, see commented out parts in openstack-quickstart/lib/functions.sh about enabling tcp listen)
 
-- cinder-volume is not being setup on 2ndary nodes?
-
-
