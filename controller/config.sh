@@ -124,6 +124,8 @@ chmod +x /usr/sbin/openstack-loopback-lvm
 chmod +x /etc/init.d/testvm
 chmod +x /etc/init.d/boot.local
 
+chmod 600 /root/.ssh/id_ed25519
+
 # not yet :-(
 # openstack-quickstart-demosetup
 
