@@ -53,7 +53,7 @@ for i in `seq $pool_start $pool_end`; do
 done >> /etc/hosts.dnsmasq
 
 echo suse.$domain > /etc/HOSTNAME
-echo "$subnet.controller   suse.$domain" >> /etc/hosts.dnsmasq
+echo "$subnet.$controller   suse.$domain" >> /etc/hosts.dnsmasq
 
 sed -i "s/@@SUBNET@@/$subnet/g;
         s/@@DOMAIN@@/$domain/g;
