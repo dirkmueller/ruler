@@ -36,7 +36,7 @@ baseUpdateSysConfig /etc/sysconfig/network/dhcp WRITE_HOSTNAME_TO_HOSTS no
 #--------------------------------------
 echo "Configure image: [$kiwi_iname]..."
 
-domain=ruler.site
+domain=ruler.suse
 subnet=172.22.222
 controller=2
 pool_start=150
