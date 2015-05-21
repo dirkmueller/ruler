@@ -8,7 +8,9 @@ grep -q bash.openstackrc /etc/bash.bashrc.local && exit 0
 
 hn="compute$(uuidgen | cut -b-8)"
 
-echo $hn > /etc/HOSTNAME
-hostname $hn
+[ "x$(</etc/HOSTNAME)" = x ] && {
+    echo $hn > /etc/HOSTNAME
+    hostname $hn
+}
 
 openstack-quickstart-extranodesetup
