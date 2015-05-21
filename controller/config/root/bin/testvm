@@ -1,0 +1,10 @@
+#!/bin/bash
+
+heat stack-create -f /cirros/testvm.template testit
+
+for i in $(seq 1 10); do
+    nova list
+    sleep 1
+done
+
+nova list
