@@ -6,11 +6,15 @@ grep -q bash.openstackrc /etc/bash.bashrc.local && exit 0
 
 # Setup 2nd disk
 if ! vgs cinder-volumes; then
-    dev=/dev/sdb
-    if [ -e $dev ] && ! pvs $dev; then
-        dd if=/dev/zero of=$dev bs=512 count=1
-        pvcreate -f $dev
-        vgcreate -f cinder-volumes $dev
+    dev=/dev/sdc
+    if mount | grep -q "$dev" ; then
+        echo "$dev is already mounted ??!"
+    else
+        if [ -e $dev ] && ! pvs $dev; then
+            dd if=/dev/zero of=$dev bs=512 count=1
+            pvcreate -f $dev
+            vgcreate -f cinder-volumes $dev
+        fi
     fi
 fi
 
