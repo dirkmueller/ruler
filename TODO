@@ -1,4 +1,5 @@
-- offline migration doesn’t work (shared ssh key  missing on nova account)
+- offline migration doesn’t work
+  * might be working, not tested
 
-- no live migration (libvirt pieces missing, see commented out parts in openstack-quickstart/lib/functions.sh about enabling tcp listen)
+- compute nodes don't get host name set via DHCP
 
